@@ -48,19 +48,19 @@ class FCMChannel
         ];
 
         if (method_exists($notification, 'toFCM')) {
-            $message['message']['notification'] = $notification->toFCM();
+            $message['message']['notification'] = $notification->toFCM($notifiable);
         }
         if (method_exists($notification, 'toAPS')) {
-            $message['message']['apns']['payload']['aps'] = $notification->toAPS();
+            $message['message']['apns']['payload']['aps'] = $notification->toAPS($notifiable);
         }
         if (method_exists($notification, 'toAndroid')) {
-            $message['message']['android'] = $notification->toAndroid();
+            $message['message']['android'] = $notification->toAndroid($notifiable);
         }
         if (method_exists($notification, 'toWeb')) {
-            $message['message']['webpush'] = $notification->toWeb();
+            $message['message']['webpush'] = $notification->toWeb($notifiable);
         }
         if (method_exists($notification, 'toData')) {
-            $message['message']['data'] = $notification->toData();
+            $message['message']['data'] = $notification->toData($notifiable);
         }
 
         if (!is_array($tokens)) {
